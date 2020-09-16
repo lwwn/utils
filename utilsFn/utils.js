@@ -784,3 +784,33 @@ export const appendQuery = (url, key, value) => {
     }
     return url;
 }
+
+//61.深复制
+
+export const deepCopy = (obj)=>{
+
+    if(typeof obj != 'object' && obj != null) {
+        return obj
+    }
+   
+    let newObj = isObj(obj)?{}:isArray(obj)?[]:{};
+
+    if(typeof obj == 'object'){
+        for(let k in obj){
+            newObj[k] = deepCopy(obj[k])
+        }
+    }
+
+    // for(let k in obj){
+
+    //     if(typeof obj[k]=='object'){
+    //         target[k] =   deepCopy(obj[k]) ;
+    //     }
+    //     else{
+    //         target[k] = obj[k];
+            // console.log(k,':',target[k],'------');
+    //     }
+    // }
+    //  console.log(i,'循环次数');
+    return newObj;
+}
